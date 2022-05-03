@@ -1,6 +1,6 @@
 <?php
 
-namespace Yepsua\Filament\FilamentCaptchaField;
+namespace Yepsua\Filament;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;

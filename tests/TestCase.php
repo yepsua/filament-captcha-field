@@ -1,20 +1,16 @@
 <?php
 
-namespace Yepsua\Filament\FilamentCaptchaField\Tests;
+namespace Yepsua\Filament\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Yepsua\Filament\FilamentCaptchaField\FilamentCaptchaFieldServiceProvider;
+use Yepsua\Filament\FilamentCaptchaFieldServiceProvider;
 
 class TestCase extends Orchestra
 {
     protected function setUp(): void
     {
         parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Yepsua\Filament\\FilamentCaptchaField\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
     }
 
     protected function getPackageProviders($app)

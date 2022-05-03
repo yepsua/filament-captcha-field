@@ -1,5 +1,5 @@
 <?php
 
-use Yepsua\Filament\FilamentCaptchaField\Tests\TestCase;
+use Yepsua\Filament\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

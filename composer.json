@@ -34,13 +34,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Yepsua\\Filament\\FilamentCaptchaField\\": "src",
-            "Yepsua\\Filament\\FilamentCaptchaField\\Database\\Factories\\": "database/factories"
+            "Yepsua\\Filament\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Yepsua\\Filament\\FilamentCaptchaField\\Tests\\": "tests"
+            "Yepsua\\Filament\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -54,11 +53,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Yepsua\\Filament\\FilamentCaptchaField\\FilamentCaptchaFieldServiceProvider"
-            ],
-            "aliases": {
-                "FilamentCaptchaField": "Yepsua\\Filament\\FilamentCaptchaField\\Facades\\FilamentCaptchaField"
-            }
+                "Yepsua\\Filament\\FilamentCaptchaFieldServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",

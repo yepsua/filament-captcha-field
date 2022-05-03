@@ -1,8 +1,8 @@
 # Provides a captcha field for the Filament Forms
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/yepsua/filament-captcha-field.svg?style=flat-square)](https://packagist.org/packages/yepsua/filament-captcha-field)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/yepsua/filament-captcha-field/run-tests?label=tests)](https://github.com/yepsua/filament-captcha-field/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/yepsua/filament-captcha-field/Check%20&%20fix%20styling?label=code%20style)](https://github.com/yepsua/filament-captcha-field/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/yepsua/filament-captcha-field/run-tests?label=tests)](https://github.com/yepsua/filament-captcha-field/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/yepsua/filament-captcha-field/Check%20&%20fix%20styling?label=code%20style)](https://github.com/yepsua/filament-captcha-field/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/yepsua/filament-captcha-field.svg?style=flat-square)](https://packagist.org/packages/yepsua/filament-captcha-field)
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
@@ -68,7 +68,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/master/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 

@@ -15,18 +15,19 @@ class Captcha extends TextInput
      */
     public function setUp(): void
     {
-        $this->required()->rule(function() {
-                return function (string $attribute, $value, \Closure $fail) {
-                    // Prevent double submit;
-                    if(session()->has('already_validated_' . $attribute)) {
-                        return;
-                    }
-                    if(! captcha_check($value)) {
-                        return $fail("The {$attribute} is invalid.");
-                    }
-                    session()->flash('already_validated_' . $attribute);
-                };
-            },
+        $this->required()->rule(
+            function () {
+            return function (string $attribute, $value, \Closure $fail) {
+                // Prevent double submit;
+                if (session()->has('already_validated_' . $attribute)) {
+                    return;
+                }
+                if (! captcha_check($value)) {
+                    return $fail("The {$attribute} is invalid.");
+                }
+                session()->flash('already_validated_' . $attribute);
+            };
+        },
         );
         $this->config('math');
     }
@@ -52,7 +53,7 @@ class Captcha extends TextInput
         $this->config = $config;
         $this->type = 'text';
 
-        if($this->config === 'math') {
+        if ($this->config === 'math') {
             $this->type = 'number';
         }
 

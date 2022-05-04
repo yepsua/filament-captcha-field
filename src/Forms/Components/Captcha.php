@@ -13,7 +13,8 @@ class Captcha extends TextInput
      *
      * @return void
      */
-    public function setUp(): void {
+    public function setUp(): void
+    {
         $this->rules('required|captcha');
     }
 
@@ -25,7 +26,6 @@ class Captcha extends TextInput
     public function getHelperText(): ?string
     {
         return $this->evaluate($this->helperText . $this->getImage());
-
     }
 
     /**
@@ -34,7 +34,8 @@ class Captcha extends TextInput
      * @param string $config
      * @return self
      */
-    public function config(string $config) : self {
+    public function config(string $config): self
+    {
         $this->config = $config;
 
         return $this;
@@ -45,8 +46,8 @@ class Captcha extends TextInput
      *
      * @return string
      */
-    protected function getImage(): string {
-
+    protected function getImage(): string
+    {
         return captcha_img($this->config);
     }
 }

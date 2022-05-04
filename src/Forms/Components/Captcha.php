@@ -6,15 +6,29 @@ use Filament\Forms\Components\TextInput;
 
 class Captcha extends TextInput
 {
-    protected string $config = 'default';
+    protected string $config;
 
     /**
      * {@inheritDoc}
      *
      * @return void
      */
-    public function setUp(): void {
-        $this->rules('required|captcha');
+    public function setUp(): void
+    {
+        $this->required()->rule(function() {
+                return function (string $attribute, $value, \Closure $fail) {
+                    // Prevent double submit;
+                    if(session()->has('already_validated_' . $attribute)) {
+                        return;
+                    }
+                    if(! captcha_check($value)) {
+                        return $fail("The {$attribute} is invalid.");
+                    }
+                    session()->flash('already_validated_' . $attribute);
+                };
+            },
+        );
+        $this->config('math');
     }
 
     /**
@@ -25,7 +39,6 @@ class Captcha extends TextInput
     public function getHelperText(): ?string
     {
         return $this->evaluate($this->helperText . $this->getImage());
-
     }
 
     /**
@@ -34,8 +47,14 @@ class Captcha extends TextInput
      * @param string $config
      * @return self
      */
-    public function config(string $config) : self {
+    public function config(string $config): self
+    {
         $this->config = $config;
+        $this->type = 'text';
+
+        if($this->config === 'math') {
+            $this->type = 'number';
+        }
 
         return $this;
     }
@@ -45,8 +64,8 @@ class Captcha extends TextInput
      *
      * @return string
      */
-    protected function getImage(): string {
-
+    protected function getImage(): string
+    {
         return captcha_img($this->config);
     }
 }

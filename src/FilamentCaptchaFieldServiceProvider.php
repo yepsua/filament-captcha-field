@@ -9,9 +9,6 @@ class FilamentCaptchaFieldServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        $package
-            ->name('filament-captcha-field')
-            ->hasConfigFile()
-            ->hasViews();
+        $package->name('filament-captcha-field');
     }
 }

@@ -62,16 +62,14 @@ You can also just display the image and validate the captcha using any other Tex
 
 The captcha uses by default the `flat` config. You can create/update the captcha configs in the file: `config/captcha.php`.
 
-To change the default config to any other available config: 
+You can switch to any other available captcha config, like the `math` config:
 
 ```php
-    use Yepsua\Filament\Forms\Components\CaptchaImage;
+    use Yepsua\Filament\Forms\Components\Captcha;
     ...
     protected function getFormSchema(): array
     {
         return [
-            Forms\Components\TextInput::make('username'),
-            Forms\Components\TextInput::make('password')->type('password'),
             Captcha::make('captcha')->config('math')
         ];
     }
@@ -115,6 +113,7 @@ class Login extends BaseLoginPage
         return $formSchema;
     }
 }
+```
 
 2. Use the new Login page instead the original filament page.
 

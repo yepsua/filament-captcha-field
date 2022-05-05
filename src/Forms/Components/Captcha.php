@@ -10,31 +10,15 @@ class Captcha extends TextInput
 
     /**
      * {@inheritDoc}
-     *
-     * @return void
      */
     public function setUp(): void
     {
-        $this->required()->rule(function() {
-                return function (string $attribute, $value, \Closure $fail) {
-                    // Prevent double submit;
-                    if(session()->has('already_validated_' . $attribute)) {
-                        return;
-                    }
-                    if(! captcha_check($value)) {
-                        return $fail("The {$attribute} is invalid.");
-                    }
-                    session()->flash('already_validated_' . $attribute);
-                };
-            },
-        );
+        $this->required()->rules('required|captcha');
         $this->config('math');
     }
 
     /**
      * {@inheritDoc}
-     *
-     * @return string|null
      */
     public function getHelperText(): ?string
     {

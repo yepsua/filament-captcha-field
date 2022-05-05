@@ -5,15 +5,11 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/yepsua/filament-captcha-field/Check%20&%20fix%20styling?label=code%20style)](https://github.com/yepsua/filament-captcha-field/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/yepsua/filament-captcha-field.svg?style=flat-square)](https://packagist.org/packages/yepsua/filament-captcha-field)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Easy integration with [mewebstudio/captcha](https://github.com/mewebstudio/captcha) for the Filament forms. 
 
-## Support us
+## Requirements:
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/filament-captcha-field.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/filament-captcha-field)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+- PHP extension: ext-gd
 
 ## Installation
 
@@ -23,38 +19,126 @@ You can install the package via composer:
 composer require yepsua/filament-captcha-field
 ```
 
-You can publish and run the migrations with:
+You can publish the package mewebstudio/captcha config file via composer:
 
 ```bash
-php artisan vendor:publish --tag="filament-captcha-field-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="filament-captcha-field-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-captcha-field-views"
+php artisan vendor:publish --provider="Mews\Captcha\CaptchaServiceProvider" --tag="config"
 ```
 
 ## Usage
 
+You can include the captcha field like any other filament field.
+
 ```php
-$filamentCaptchaField = new Yepsua\Filament\FilamentCaptchaField();
-echo $filamentCaptchaField->echoPhrase('Hello, Yepsua\Filament!');
+    use Yepsua\Filament\Forms\Components\Captcha;
+    ...
+    protected function getFormSchema(): array
+    {
+        return [
+            Forms\Components\TextInput::make('username'),
+            Forms\Components\TextInput::make('password')->type('password'),
+            Captcha::make('captcha')
+        ];
+    }
+
 ```
+
+You can also display the image and validate the captcha using any other TextInput field:
+
+```php
+    use Yepsua\Filament\Forms\Components\CaptchaImage;
+    ...
+    protected function getFormSchema(): array
+    {
+        return [
+            Forms\Components\TextInput::make('username'),
+            Forms\Components\TextInput::make('password')->type('password'),
+            Forms\Components\TextInput::make('captcha')->required()->rules('required|captcha'),
+            CaptchaImage::make('captchaImg')
+        ];
+    }
+
+```
+
+The captcha uses by default the `flat` config. You can create/update the captcha configs in the file: `config/captcha.php`.
+
+To change the default config to any other available config: 
+
+```php
+    use Yepsua\Filament\Forms\Components\CaptchaImage;
+    ...
+    protected function getFormSchema(): array
+    {
+        return [
+            Forms\Components\TextInput::make('username'),
+            Forms\Components\TextInput::make('password')->type('password'),
+            Captcha::make('captcha')->config('flat')
+        ];
+    }
+
+```
+
+For more info about the captcha configuration, please read the [mewebstudio/captcha](https://github.com/mewebstudio/captcha) documentation.
+
+## Translations
+
+This package and mewebstudio/captcha don't provide any translation for the captcha validation message, but you can translate the message by yourself, just add the item in the folder `resources/lang/{lang}/validation.php`
+
+```php
+return [
+    ...
+    'captcha'             => 'Invalid captcha.',
+    ...
+]
+```
+
+## Case of use: Add a captcha in the filament login form:
+
+1. Extend the Login page class to add the new field into the form:
+
+```php
+
+<?php
+
+namespace  App\Filament\Pages\Auth;
+
+use Filament\Http\Livewire\Auth\Login as BaseLoginPage;
+use Yepsua\Filament\Forms\Components\Captcha;
+
+class Login extends BaseLoginPage
+{
+
+    protected function getFormSchema(): array
+    {
+        $formSchema = parent::getFormSchema();
+        $formSchema[] = Captcha::make('captcha');
+
+        return $formSchema;
+    }
+}
+
+2. Use the new Login page instead the original filament page.
+
+```php 
+
+return [
+    ...
+    'auth' => [
+        'guard' => env('FILAMENT_AUTH_GUARD', 'web'),
+        'pages' => [
+            // 'login' => \Filament\Http\Livewire\Auth\Login::class, // <- Original form
+            'login' => \App\Filament\Pages\Auth\Login::class,        // <- Form with captcha
+        ],
+    ],
+    ...
+]
+```
+
+3. Done. Finally you can test the captcha in login form.
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/1541517/167027574-1bc08a97-a64d-4f25-a532-073d770423c5.png" />
+</p>
 
 ## Testing
 

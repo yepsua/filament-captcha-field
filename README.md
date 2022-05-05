@@ -132,7 +132,7 @@ return [
 ]
 ```
 
-3. Done. Finally you can test the captcha in login form.
+3. Done. Finally you can test the captcha in the login form.
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/1541517/167027574-1bc08a97-a64d-4f25-a532-073d770423c5.png" />

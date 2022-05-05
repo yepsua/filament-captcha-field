@@ -36,7 +36,7 @@ class Captcha extends TextInput
         $this->config = $config;
         $this->type = 'text';
 
-        if($this->config === 'math') {
+        if ($this->config === 'math') {
             $this->type = 'number';
         }
 

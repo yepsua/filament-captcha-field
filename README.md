@@ -13,13 +13,13 @@ Easy integration with [mewebstudio/captcha](https://github.com/mewebstudio/captc
 
 ## Installation
 
-You can install the package via composer:
+Install the package via composer:
 
 ```bash
 composer require yepsua/filament-captcha-field
 ```
 
-You can publish the package mewebstudio/captcha config file via composer:
+Publish the package mewebstudio/captcha config file:
 
 ```bash
 php artisan vendor:publish --provider="Mews\Captcha\CaptchaServiceProvider" --tag="config"
@@ -43,7 +43,7 @@ You can include the captcha field like any other filament field.
 
 ```
 
-You can also display the image and validate the captcha using any other TextInput field:
+You can also just display the image and validate the captcha using any other TextInput field:
 
 ```php
     use Yepsua\Filament\Forms\Components\CaptchaImage;
@@ -72,17 +72,16 @@ To change the default config to any other available config:
         return [
             Forms\Components\TextInput::make('username'),
             Forms\Components\TextInput::make('password')->type('password'),
-            Captcha::make('captcha')->config('flat')
+            Captcha::make('captcha')->config('math')
         ];
     }
-
 ```
 
 For more info about the captcha configuration, please read the [mewebstudio/captcha](https://github.com/mewebstudio/captcha) documentation.
 
 ## Translations
 
-This package and mewebstudio/captcha don't provide any translation for the captcha validation message, but you can translate the message by yourself, just add the item in the folder `resources/lang/{lang}/validation.php`
+This package and mewebstudio/captcha don't provide any translation for the captcha validation message, but you can translate the message by yourself, just add the item in the file `resources/lang/{lang}/validation.php`
 
 ```php
 return [

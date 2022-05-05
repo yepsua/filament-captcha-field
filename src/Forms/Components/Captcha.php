@@ -14,7 +14,7 @@ class Captcha extends TextInput
     public function setUp(): void
     {
         $this->required()->rules('required|captcha');
-        $this->config('math');
+        $this->config('flat');
     }
 
     /**
